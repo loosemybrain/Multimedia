@@ -59,6 +59,8 @@ void draw()
     //Lied weiterleiten Ein Draw() für jeden "Frame" des Songs ...
     fft.forward(song.mix);
     
+    labelSong.draw();
+    
     //Berechnung von "Scores" (Leistung) für drei Klangkategorien
     //Zuerst alte Werte speichern
     oldScoreLow = scoreLow;
@@ -190,20 +192,22 @@ void draw()
   }
 }
 
+// run to start the game
 void run_game() {
   
   oldSetup();
+  button2.setVisible(false);
+  labelSong.setVisible(false);
   game_running = true;
   song.play(0);
   
 }
 
 
-
+// do GUI stuff that can not be done in the gui file
 void mygui() {
-
   titel.setText(getSongs());
-
+  
 }
 
 void oldSetup() {
@@ -276,6 +280,17 @@ String getSongs() {
     }
   }
   return listofsongs;
+}
+
+void fileSelected(File selection) {
+  if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    println("User selected " + selection.getAbsolutePath());
+    file = selection.getAbsolutePath();
+    labelSong.setText(selection.getAbsolutePath());
+    
+  }
 }
 
 void handleButtonEvents(GButton button, GEvent event) {

@@ -49,6 +49,10 @@ public void createGUI(){
   button2 = new GButton(this, 736, 368, 144, 48);
   button2.setText("klick mich zuerst");
   button2.addEventHandler(this, "button2_click1");
+  labelSong = new GLabel(this, 736, 448, 144, 20);
+  labelSong.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  labelSong.setText("none");
+  labelSong.setOpaque(false);
 }
 
 // Variable declarations 
@@ -56,3 +60,4 @@ public void createGUI(){
 GLabel titel; 
 GButton button1; 
 GButton button2; 
+GLabel labelSong; 
