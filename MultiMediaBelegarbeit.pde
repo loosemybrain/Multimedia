@@ -2,7 +2,9 @@ import g4p_controls.*;
 
 import ddf.minim.*;
 import ddf.minim.analysis.*;
- 
+
+import java.awt.Font;
+
 Minim minim;
 AudioPlayer song;
 FFT fft;
@@ -37,6 +39,9 @@ Triangle[] triangles;
 // creat wall-lines
 int nbWalls = 1000;
 Wall[] walls;
+
+PFont font;
+
 
 void setup()
 {
@@ -207,7 +212,10 @@ void run_game() {
 // do GUI stuff that can not be done in the gui file
 void mygui() {
   titel.setText(getSongs());
-  
+  titel.setFont(new Font("Monospaced", Font.PLAIN, 16));
+  labelSong.setFont(new Font("Monospaced", Font.PLAIN, 16));
+  labelSong.setText(file);
+  static_songWahl.setFont(new Font("Monospaced", Font.PLAIN, 16));
 }
 
 void oldSetup() {
@@ -288,8 +296,7 @@ void fileSelected(File selection) {
   } else {
     println("User selected " + selection.getAbsolutePath());
     file = selection.getAbsolutePath();
-    labelSong.setText(selection.getAbsolutePath());
-    
+    labelSong.setText(selection.getName());
   }
 }
 

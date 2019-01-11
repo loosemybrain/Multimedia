@@ -18,9 +18,10 @@ public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:6309
   println("button1 - GButton >> GEvent." + event + " @ " + millis());
   titel.setText("Feel the Music");
   titel.setOpaque(true);
-  titel.setVisible(true);
+  titel.setVisible(false);
   button1.draw();
   button1.setVisible(false);
+  static_songWahl.setVisible(false);
   run_game();
 } //_CODE_:button1:630907:
 
@@ -44,15 +45,19 @@ public void createGUI(){
   titel.setTextBold();
   titel.setOpaque(false);
   button1 = new GButton(this, 720, 272, 180, 70);
-  button1.setText("klick mich hart");
+  button1.setText("Start");
   button1.addEventHandler(this, "button1_click1");
   button2 = new GButton(this, 736, 368, 144, 48);
-  button2.setText("klick mich zuerst");
+  button2.setText("Song waehlen");
   button2.addEventHandler(this, "button2_click1");
-  labelSong = new GLabel(this, 736, 448, 144, 20);
+  labelSong = new GLabel(this, 657, 461, 319, 73);
   labelSong.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   labelSong.setText("none");
-  labelSong.setOpaque(false);
+  labelSong.setOpaque(true);
+  static_songWahl = new GLabel(this, 736, 432, 148, 17);
+  static_songWahl.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  static_songWahl.setText("Song:");
+  static_songWahl.setOpaque(false);
 }
 
 // Variable declarations 
@@ -61,3 +66,4 @@ GLabel titel;
 GButton button1; 
 GButton button2; 
 GLabel labelSong; 
+GLabel static_songWahl; 
