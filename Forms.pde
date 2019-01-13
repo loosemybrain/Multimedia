@@ -2,7 +2,7 @@
 class Cube {
   //Z position of spawn and maximum Z position
   float startingZ = -10000;
-  float maxZ = 1000;
+  float maxZ = 300;
   
   //Position values
   float x, y, z;
@@ -24,8 +24,8 @@ class Cube {
   
   void display(float scoreLow, float scoreMid, float scoreHi, float intensity, float scoreGlobal) {
     // Selection of the color, opacity determined by the intensity (volume of the band)
-    color displayColor = color(scoreLow*random(0,1), scoreMid*random(0,1), scoreHi*random(0,1), intensity*10);
-    fill(displayColor, 255);
+    color displayColor = color(scoreLow*random(0,1), scoreMid*random(0,1), scoreHi*random(0,1), intensity*100);
+    fill(displayColor, 127);
     
     //Color lines, they disappear with the individual intensity of the cube
     color strokeColor = color(255, 150-(20*intensity));
@@ -39,17 +39,17 @@ class Cube {
     translate(x, y, z);
     
     //Calculation of the rotation according to the intensity for the cube
-    sumRotX += intensity*(rotX/1000);
-    sumRotY += intensity*(rotY/1000);
-    sumRotZ += intensity*(rotZ/1000);
+    sumRotX += intensity*(rotX/400);
+    sumRotY += intensity*(rotY/400);
+    sumRotZ += intensity*(rotZ/400);
     
     //Application of the rotation
     rotateX(sumRotX);
     rotateY(sumRotY);
     rotateZ(sumRotZ);
     
-    //Creation of the box, variable size according to the intensity for the cube
-    box(100+(intensity/2));
+    //Creation of the box, variable size according to the intensity for the cube (size)
+    box(100+(intensity/200));
     
     //Application of the matrix
     popMatrix();
@@ -70,7 +70,7 @@ class Cube {
 class Sphere {
   //Z position of spawn and maximum Z position
   float startingZ = -10000;
-  float maxZ = 1000;
+  float maxZ = 300;
   
   //Position values
   float x, y, z;
@@ -81,7 +81,7 @@ class Sphere {
   Sphere() {
     //Make the cube appear in a random place
     x = random(0, width);
-    y = random(0, height);
+    y = random(0, height/2);
     z = random(startingZ, maxZ);
     
     //random rotation for cubes
@@ -92,13 +92,13 @@ class Sphere {
   
   void display(float scoreLow, float scoreMid, float scoreHi, float intensity, float scoreGlobal) {
     // Selection of the color, opacity determined by the intensity (volume of the band)
-    color displayColor = color(scoreLow*random(0,1), scoreMid*random(0,1), scoreHi*random(0,1), intensity*10);
-    fill(displayColor, 255);
+    color displayColor = color(scoreLow*random(0,0.5), scoreMid*random(0.5,0.8), scoreHi*random(0,1));
+    fill(displayColor, 127);
     
     //Color lines, they disappear with the individual intensity of the cube
-    color strokeColor = color(255, 150-(20*intensity));
+    color strokeColor = color(200, 150-(2*intensity));
     stroke(strokeColor);
-    strokeWeight(1 + (scoreGlobal/800));
+    strokeWeight(0.5 + (scoreGlobal/800));
     
     //Creating a transformation matrix to perform rotations, sizing
     pushMatrix();
@@ -116,13 +116,13 @@ class Sphere {
     rotateY(sumRotY);
     rotateZ(sumRotZ);
     
-    sphere(50+(intensity/2));
+    sphere(50+(intensity/100));
     
     //Application of the matrix
     popMatrix();
     
     //Z displacement
-    z+= (1+(intensity/5)+(pow((scoreGlobal/150), 2)));
+    z+= (1+(intensity/500)+(pow((scoreGlobal/150), 2)));
     
     //Replace the box at the back when it is no longer visible
     if (z >= maxZ) {
@@ -133,7 +133,7 @@ class Sphere {
   }
 }
 
-//Class for cubes floating in space
+//Class for triangles floating in space
 class Triangle {
   //Z position of spawn and maximum Z position
   float startingZ = -10000;
